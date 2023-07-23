@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.button {
+  background-color: $main-button-color;
+  color: $default-button-color;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $main-button-color-hover;
+  }
+}
