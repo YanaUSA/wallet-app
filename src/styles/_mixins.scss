@@ -1,4 +1,37 @@
-@mixin vertical-list {
+@import "./variables";
+
+//------------- media mixins -------------//
+
+// Mobile devices (up to 767px)
+@mixin mobile {
+  @media (max-width: #{$mobile - 1}) {
+    @content;
+  }
+}
+
+// Tablet devices (768px to 1023px)
+@mixin tablet {
+  @media (min-width: #{$tablet}) and (max-width: #{$desktop - 1}) {
+    @content;
+  }
+}
+
+// Desktop devices (1024px and above)
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+//------ positioning mixins---------//
+
+@mixin displayCenterHorizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin displayCenterVertical {
   display: flex;
   align-items: center;
   flex-direction: column;

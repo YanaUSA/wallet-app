@@ -1,24 +1,32 @@
-import React from "react";
+import { ReactComponent as LoaderIcon } from "../../assets/icons/loader.svg";
+
 import styles from "./Button.module.scss";
 
 interface ButtonProps {
+  onClick?: () => void;
   type?: "button" | "submit" | "reset";
-  // onClick: () => void;
-  children: React.ReactNode;
+  text: string;
+  loading?: boolean;
+  disabled?: boolean;
+  className?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
+  onClick,
+  className,
+  text,
   type,
-  // onClick,
-  children,
+  loading = false,
+  disabled,
 }) => {
   return (
     <button
-      className={styles.button}
+      className={`${styles.submitBtn} ${className}`}
       type={type}
-      // onClick={onClick}
+      disabled={disabled}
+      onClick={onClick}
     >
-      {children}
+      {!loading ? text : <LoaderIcon className={styles.submitBtn__spinner} />}
     </button>
   );
 };

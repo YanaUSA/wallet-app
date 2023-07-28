@@ -1,0 +1,33 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $headerBackgroundColor;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  color: $footerTextColor;
+  padding: 16px;
+}
+
+.footerRights {
+  @include displayCenterHorizontal;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+
+  @include tablet {
+    font-size: 14px;
+  }
+
+  @include desktop {
+    font-size: 14px;
+  }
+}
+
+.footerLinkSpan {
+  margin-left: 5px;
+  margin-right: 5px;
+}

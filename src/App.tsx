@@ -1,42 +1,63 @@
-// import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
-import "./App.css";
-import Layout from "./components/Layout/Layout";
+import { useState } from "react";
+import Web3 from "web3";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Form from "./components/Form/Form";
+
+import "./App.scss";
+
+const App: React.FC = () => {
+  const [isConnected, setIsConnected] = useState<boolean>(false);
+  const [currentAccount, setCurrentAccount] = useState<string>("");
+  const [balance, setBalance] = useState<string>("");
+  const [currentProvider, setCurrentProvider] = useState(null);
+
+  const onWalletConnect = async (provider: any) => {
+    try {
+      const web3 = new Web3(provider);
+      const accounts = await web3.eth.getAccounts();
+
+      if (accounts.length === 0) {
+        console.log("Please connect to MetaMask!");
+      } else if (accounts[0] !== currentAccount) {
+        setCurrentAccount(accounts[0]);
+        const accBalanceEth = web3.utils.fromWei(
+          await web3.eth.getBalance(accounts[0]),
+          "ether"
+        );
+
+        setBalance(accBalanceEth);
+        setIsConnected(true);
+        setCurrentProvider(web3);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
   return (
     <>
-      <Layout children={undefined} />
+      <Header
+        onWallConnect={onWalletConnect}
+        currentAccount={currentAccount}
+        balance={balance}
+        isConnected={isConnected}
+      />
+      <main>
+        <Form
+          currentAccount={currentAccount}
+          balance={balance}
+          currentProvider={currentProvider}
+          isConnected={isConnected}
+        />
+      </main>
+      <Footer />
+      <ToastContainer />
     </>
   );
-
-  // const [count, setCount] = useState(0)
-
-  // return (
-  //   <>
-  //     <div>
-  //       <a href="https://vitejs.dev" target="_blank">
-  //         <img src={viteLogo} className="logo" alt="Vite logo" />
-  //       </a>
-  //       <a href="https://react.dev" target="_blank">
-  //         <img src={reactLogo} className="logo react" alt="React logo" />
-  //       </a>
-  //     </div>
-  //     <h1>Vite + React</h1>
-  //     <div className="card">
-  //       <button onClick={() => setCount((count) => count + 1)}>
-  //         count is {count}
-  //       </button>
-  //       <p>
-  //         Edit <code>src/App.tsx</code> and save to test HMR
-  //       </p>
-  //     </div>
-  //     <p className="read-the-docs">
-  //       Click on the Vite and React logos to learn more
-  //     </p>
-  //   </>
-  // )
-}
+};
 
 export default App;

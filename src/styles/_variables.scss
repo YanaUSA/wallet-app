@@ -7,13 +7,16 @@ $main-background-color: #fff;
 $default-button-color: #212121;
 
 $main-button-color: #ffd500;
-$main-button-color-hover: #d2d900;
-
-$form-button-color: #007bff;
-$form-button-color-hover: #0475ee;
+$main-button-color-hover: #f6d947;
 
 //--------- text styles -------//
 $textColor: #212121;
+$footerTextColor: #fff;
 
 //------ input styles -------//
 $input-border-color: #ccc;
+
+//------- media-breakpoints -------//
+$mobile: 320px;
+$tablet: 768px;
+$desktop: 1024px;

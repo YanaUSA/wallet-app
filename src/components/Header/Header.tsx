@@ -1,33 +1,31 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss";
-
-import Button from "../Button/Button";
+import ConnectBtn from "../ConnectBtn/ConnectBtn";
+import Account from "../Account/Account";
 
 interface HeaderProps {
-  sum: number;
-  walletNumber: string;
+  // onWallConnect: () => void;
+  onWallConnect: any;
+  currentAccount: string;
+  balance: string;
+  isConnected: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ sum, walletNumber }) => {
-  const [showSum, setShowSum] = useState(false);
-
-  const handleButtonClick = () => {
-    setShowSum(!showSum);
-  };
-
+const Header: React.FC<HeaderProps> = (props) => {
   return (
-    <header className={styles.header}>
-      {/* <img className={styles.logo} src="/logo.svg" alt="Logo" /> */}
-      <span className={styles.logo} />
-      {walletNumber ? (
-        <div>
-          <p>Sum: {sum}</p>
-          <p>Wallet: {walletNumber}</p>
-        </div>
-      ) : (
-        <Button onClick={handleButtonClick}>Connect wallet</Button>
-      )}
-    </header>
+    <div>
+      <header className={styles.header}>
+        <img className={styles.logo} src="/MetaMask.png" alt="Logo MetaMask" />
+        {!props.isConnected ? (
+          <ConnectBtn onWallConnect={props.onWallConnect} />
+        ) : (
+          <Account
+            balance={props.balance}
+            currentAccount={props.currentAccount}
+          />
+        )}
+      </header>
+    </div>
   );
 };
 

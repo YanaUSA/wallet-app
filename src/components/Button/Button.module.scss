@@ -1,16 +1,52 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
+@import url("https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100;200;300;400;500;600;700;800&display=swap");
 
-.button {
+.submitBtn {
+  font-family: "Anek Malayalam", sans-serif;
   background-color: $main-button-color;
-  color: $default-button-color;
   border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 16px;
+  outline: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  color: $default-button-color;
+  min-width: 150px;
+  min-height: 36px;
   cursor: pointer;
+  outline: none;
 
-  &:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:disabled {
+    background: #e7e8e9;
+    color: #9fa3a9;
+    cursor: not-allowed;
+  }
+
+  &:hover,
+  &:focus {
     background-color: $main-button-color-hover;
+  }
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spin 500ms infinite linear;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
