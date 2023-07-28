@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
         <div className={styles.footerRights}>
           &copy; 2023 Developed by Yana Usatiuk
           <span className={styles.footerLinkSpan}>|</span>{" "}
-          <a href="https://github.com/YanaUSA/Wall-app" target="blank">
+          <a href="https://github.com/YanaUSA/wallet-app" target="blank">
             GitHub
           </a>
         </div>
