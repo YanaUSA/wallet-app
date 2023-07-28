@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
 
-import styles from "./ConnectBtn.module.scss";
+// import styles from "./ConnectBtn.module.scss";
 
 interface ConnectBtnProps {
   onWallConnect: (provider: any) => void;

@@ -7,7 +7,11 @@ import { nodePolyfills } from "vite-plugin-node-polyfills";
 export default defineConfig({
   plugins: [
     react(),
-    svgr(),
+    svgr({
+      svgrOptions: {
+        icon: true,
+      },
+    }),
     nodePolyfills({
       // To exclude specific polyfills, add them to this list.
       exclude: [

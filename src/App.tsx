@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Web3 from "web3";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Header from "./components/Header/Header";
@@ -15,9 +15,12 @@ const App: React.FC = () => {
   const [balance, setBalance] = useState<string>("");
   const [currentProvider, setCurrentProvider] = useState(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onWalletConnect = async (provider: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let web3: any;
     try {
-      const web3 = new Web3(provider);
+      web3 = new Web3(provider);
       const accounts = await web3.eth.getAccounts();
 
       if (accounts.length === 0) {

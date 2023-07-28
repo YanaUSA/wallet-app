@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import ConnectBtn from "../ConnectBtn/ConnectBtn";
 import Account from "../Account/Account";
